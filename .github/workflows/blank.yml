@@ -28,7 +28,6 @@ jobs:
     container:
       image: ${{ matrix.os }}
       volumes: 
-        - ${{ contains('amazonlinux:2', matrix.os) && '/node20217:/node20217:rw,rshared' || ' ' }}
         - ${{ contains('amazonlinux:2', matrix.os) && '/node20217:/__e/node20:ro,rshared' || ' ' }}        
 
     # Steps represent a sequence of tasks that will be executed as part of the job
@@ -40,9 +39,6 @@ jobs:
       - name: Install Node.js 20 built against glibc 2.17 for GitHub Actions
         run: |
           set -ex
-          which apt \
-             && apt update \
-             && apt install -y wget xz-utils
           which yum \
              && yum install -y wget xz
           wget https://unofficial-builds.nodejs.org/download/release/v20.9.0/node-v20.9.0-linux-x64-glibc-217.tar.xz
