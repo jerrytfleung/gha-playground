@@ -28,7 +28,7 @@ jobs:
     container:
       image: ${{ matrix.os }}
       volumes: 
-        - ${{ contains('amazonlinux:2', matrix.os) && '/node20217:/__e/node20:ro,rshared' || ' ' }}        
+        - ${{ contains('amazonlinux:2', matrix.os) && '/node20217:/__e/node20:rw,rshared' || ' ' }}        
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
